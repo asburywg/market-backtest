@@ -9,16 +9,16 @@ class Simulate:
         self.strategy = strategy
         self.principal = 1000
         self.compound = True
-        self.simulate()
+        if self.strategy.cadence == "LIFETIME":
+            self.lifetime_trade()
+        else:
+            self.simulate()
 
     def simulate(self):
         trades = []
         for i in range(len(self.data) - 1):
             buy = self.data[self.strategy.buy_index]
             sell = self.data[self.strategy.sell_index]
-
-            # print(f"BUY {buy}")
-            # print(f"SELL {sell}")
 
             principal = trades[-1].proceeds if len(trades) > 0 else self.principal if self.compound else self.principal
             trade = Trade(principal)
@@ -27,7 +27,17 @@ class Simulate:
             if sell_price := self.strategy.sell_trigger(sell):
                 trade.sell(sell_price, sell)
 
-            print(f"{sell.date} ${round(trade.proceeds, 2)} ({round((trade.proceeds - self.principal) / self.principal * 100, 2)}%)")
             trades.append(trade)
-
             self.strategy.increment()
+        self.report(trades[-1])
+
+    def lifetime_trade(self):
+        buy = self.data[self.strategy.buy_index]
+        sell = self.data[self.strategy.sell_index]
+        trade = Trade(self.principal)
+        trade.buy(self.strategy.buy_trigger(buy), buy)
+        trade.sell(self.strategy.sell_trigger(sell), sell)
+        self.report(trade)
+
+    def report(self, trade):
+        print(f"{self.strategy.name} {trade.sell_data.date} ${round(trade.proceeds, 2)} ({round((trade.proceeds - self.principal) / self.principal * 100, 2)}%)")
