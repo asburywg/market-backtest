@@ -4,6 +4,7 @@ import datetime
 def parse_date(date):
     if type(date) == str:
         return datetime.datetime.strptime(date, "%Y-%m-%d").date()
+    return date.date()
 
 
 class PriceData:

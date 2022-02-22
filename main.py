@@ -1,27 +1,13 @@
-import datetime
-from dateutil.relativedelta import relativedelta
-
-from classes.Simulate import Simulate
-from classes.Stock import Stock
-from strategies.BuyAndHold import BuyAndHold
-from strategies.BuyCloseSellOpen import BuyCloseSellOpen
-from strategies.BuyOpenSellClose import BuyOpenSellClose
+from classes.Manager import Manager
 
 
 def main():
-    # load price data
-    stock = Stock("VOO")
-
-    end = datetime.date.today()
-    start = end - relativedelta(years=5)
-
-    bcso = BuyCloseSellOpen()
-    bnh = BuyAndHold()
-    bosc = BuyOpenSellClose()
-
-    Simulate(start, end, stock, bnh)
-    Simulate(start, end, stock, bcso)
-    Simulate(start, end, stock, bosc)
+    yr = 2
+    Manager("VOO", yr).simulate_strategies()
+    Manager("GOOGL", yr).simulate_strategies()
+    Manager("FB", yr).simulate_strategies()
+    Manager("AAPL", yr).simulate_strategies()
+    Manager("MSFT", yr).simulate_strategies()
 
 
 if __name__ == '__main__':
