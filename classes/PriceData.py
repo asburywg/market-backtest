@@ -8,7 +8,7 @@ def parse_date(date):
 
 
 class PriceData:
-    def __init__(self, date, open, high, low, close, adj_close, volume):
+    def __init__(self, date, open, high, low, close, adj_close, volume, moving_averages):
         self.date = parse_date(date)
         self.open = float(open)
         self.high = float(high)
@@ -16,6 +16,7 @@ class PriceData:
         self.close = float(close)
         self.adj_close = float(adj_close)
         self.volume = int(volume)
+        self.moving_averages = moving_averages
 
     def __repr__(self):
-        return f"{self.date}: {{ open: ${round(self.open, 2)}, close: ${round(self.close, 2)} }}"
+        return f"{self.date}: {{ open: ${round(self.open, 2)}, close: ${round(self.close, 2)}, MA: {self.moving_averages} }}"

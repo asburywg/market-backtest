@@ -1,5 +1,4 @@
 import datetime
-
 from dateutil.relativedelta import relativedelta
 
 from classes.Simulate import Simulate
