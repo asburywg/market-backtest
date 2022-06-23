@@ -1,6 +1,6 @@
 import datetime
-import classes.Stock as Stock
-from classes.Trade import Trade
+import market.Stock as Stock
+from market.Trade import Trade
 
 
 class Simulate:

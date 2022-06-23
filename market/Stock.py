@@ -1,5 +1,5 @@
 import csv
-from classes.PriceData import PriceData
+from market.PriceData import PriceData
 import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt

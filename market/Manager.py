@@ -1,8 +1,8 @@
 import datetime
 from dateutil.relativedelta import relativedelta
 
-from classes.Simulate import Simulate
-from classes.Stock import Stock
+from market.Simulate import Simulate
+from market.Stock import Stock
 from strategies.BuyAndHold import BuyAndHold
 from strategies.BuyCloseSellOpen import BuyCloseSellOpen
 from strategies.BuyOpenSellClose import BuyOpenSellClose

@@ -1,4 +1,4 @@
-from classes.Manager import Manager
+from market.Manager import Manager
 
 
 def main():
